@@ -81,9 +81,9 @@ public class DLStack<T> implements DLStackADT<T> {
 		if(k == 1) item = this.pop();
 		else {
 			
-			DoubleLinkedNode<T> curr = top;	// current node for iterating throug
+			DoubleLinkedNode<T> curr = top;	// current node for iterating through
 
-			for(int i = 0; i<k; i++) {
+			for(int i = 0; i<k-1; i++) {
 				// iterating through the list until the node to remove, starting from top and going to the previous node for the length
 				curr = curr.getPrevious();
 			}
@@ -115,6 +115,7 @@ public class DLStack<T> implements DLStackADT<T> {
 	 * @return element at top
 	 */
 	public T peek() throws EmptyStackException{
+		if(numItems == 0) throw new EmptyStackException("Stack is empty");
 		return top.getElement();
 	}
 	
