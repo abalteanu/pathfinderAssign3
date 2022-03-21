@@ -61,7 +61,7 @@ public class FindPath {
 					// if the best chamber is just null, pop the last chamber from the stack
 					// mark this popped chamber as popped to know that it has been popped.
 					best = chambers.pop(); // since best holds null, it is useless so using best variable to store popped chamber
-					best.markPushed();
+					best.markPopped();
 				} else {
 					// if best chamber is not null, push that chamber onto the stack as your next moe
 					chambers.push(best);
@@ -91,14 +91,20 @@ public class FindPath {
 	public boolean isDim(Chamber currentChamber) {
 		boolean dim = false;
 		
-		if(currentChamber != null && !currentChamber.isSealed() && !currentChamber.isLighted()) {
+		if(currentChamber != null) {
 			// checking if the current chamber is not null
-			// checking if the current chamber is not lit or sealed
+			
+			if(!currentChamber.isSealed() && !currentChamber.isLighted()) {
+				// checking if the current chamber is not lit or sealed
 
-			for(int i = 0; i < 6; i++) {
-				// checking if each of the neighboring chambers is lit. As soon as one is lit, dim = true
-				if(currentChamber.getNeighbour(i).isLighted()) dim = true;
+				for(int i = 0; i < 6; i++) {
+					// checking if each of the neighboring chambers is lit. As soon as one is lit, dim = true
+					if(currentChamber.getNeighbour(i)!= null) {
+						if(currentChamber.getNeighbour(i).isLighted()) dim = true;
+					}
+				}
 			}
+
 		}
 		
 		return dim;
@@ -115,6 +121,25 @@ public class FindPath {
 	 * @return chamber that is next best move, or null if no next best move.
 	 */
 	public Chamber bestChamber(Chamber currentChamber) {
-		return currentChamber.getNeighbour(0);	//TEMPORARY
+		// preferred is six means none of them are unchecked (must return null)
+		int preferred = 6;
+		
+		for(int i = 5; i > 0; i--) {
+			// iterating backwards from 5 to 0 to ensure smallest index is favoured
+			System.out.println(i);
+			//if(currentChamber.isLighted()) System.out.println("Lit");
+			if(currentChamber.getNeighbour(i) == null) continue; // if neighbouring chamber is null, continue to next chamber
+			else if(!currentChamber.getNeighbour(i).isMarked()) {
+				// checking if neighbouring chamber is marked
+				if(currentChamber.getNeighbour(i).isTreasure()) preferred = i; // first checking if this unmarked chamber is a treasure chamber
+				else if(currentChamber.getNeighbour(i).isLighted()) preferred = i; // next checking if this unmarked chamber is lit
+				else if(this.isDim(currentChamber.getNeighbour(i))) preferred = i; // next checking if this unmarked chamber is dim
+			}
+			// if neighbouring chamber is marked, then return null.
+			else preferred = 6;
+		}
+		
+		if(preferred == 6) return null;
+		else return currentChamber.getNeighbour(preferred);
 	}
 }
