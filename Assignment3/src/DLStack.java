@@ -1,4 +1,11 @@
 
+/**
+ * Class for ADT DLStack, which uses a doubly linked list to make a stack
+ * Implements DLStackADt
+ * @author Ana Balteanu
+ *
+ * @param <T> 
+ */
 public class DLStack<T> implements DLStackADT<T> {
 	
 	DoubleLinkedNode<T> top = new DoubleLinkedNode<T>();

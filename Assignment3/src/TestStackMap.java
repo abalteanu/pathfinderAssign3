@@ -114,29 +114,29 @@ public class TestStackMap {
 		} catch (Exception e) {
 			System.out.println("Test 5 failed");
 		}
-//		
-//		FindPath program;
-//		testPassed = true;
-//
-//		program = new FindPath("map0.txt");
-//		try {
-//			Map m = program.getMap();	
-//			Chamber current = m.getEntrance();
-//			current = current.getNeighbour(2);
-//			if (program.isDim(current)) testPassed = false;
-//			if (!program.isDim(current.getNeighbour(1))) testPassed = false;
-//			Chamber next = program.bestChamber(current);
-//			if (next != current.getNeighbour(2)) testPassed = false;
-//			current = current.getNeighbour(2);
-//			next = program.bestChamber(current);
-//			if (next != current.getNeighbour(3)) testPassed = false;
-//        }
-//		catch (Exception e) {
-//			testPassed = false;
-//		}
-//		if (testPassed) System.out.println("Test 6 passed");
-//		else System.out.println("Test 6 failed");		
-//		System.exit(0);
+		
+		FindPath program;
+		testPassed = true;
+
+		program = new FindPath("map0.txt");
+		try {
+			Map m = program.getMap();	
+			Chamber current = m.getEntrance();
+			current = current.getNeighbour(2);
+			if (program.isDim(current)) testPassed = false;
+			if (!program.isDim(current.getNeighbour(1))) testPassed = false;
+			Chamber next = program.bestChamber(current);
+			if (next != current.getNeighbour(2)) testPassed = false;
+			current = current.getNeighbour(2);
+			next = program.bestChamber(current);
+			if (next != current.getNeighbour(3)) testPassed = false;
+        }
+		catch (Exception e) {
+			testPassed = false;
+		}
+		if (testPassed) System.out.println("Test 6 passed");
+		else System.out.println("Test 6 failed");		
+		System.exit(0);
 	}
 
 }
