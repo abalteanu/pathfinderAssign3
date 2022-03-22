@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -21,13 +20,11 @@ public class FindPath {
 		// tries to open file, catches thrown exceptions from map constructor
 		try {
 			this.pyramidMap = new Map(fileName);
-		} catch (InvalidMapCharacterException e) {
-			e.getMessage();
-		} catch (FileNotFoundException e) {
-			e.getMessage();
-		} catch (IOException e) {
+		} catch (InvalidMapCharacterException | IOException e) {
+			// TODO Auto-generated catch block
 			e.getMessage();
 		}
+
 	}
 	
 	/**

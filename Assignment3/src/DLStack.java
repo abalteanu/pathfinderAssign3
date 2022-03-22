@@ -8,9 +8,15 @@
  */
 public class DLStack<T> implements DLStackADT<T> {
 	
-	DoubleLinkedNode<T> top = new DoubleLinkedNode<T>();
+	/**
+	 * Private instance variable top representing the top of the doubly linked stack
+	 */
+	private DoubleLinkedNode<T> top = new DoubleLinkedNode<T>();
 	
-	int numItems;
+	/**
+	 * Private instance variable numItems representing the number of items in the stack
+	 */
+	private int numItems;
 	
 	/**
 	 * Constructor that creates an empty stack. Adjust instance variables accordingly (making top = null and numItems = 0)
@@ -22,6 +28,7 @@ public class DLStack<T> implements DLStackADT<T> {
 	
 	/**
 	 * Adds the given dataItem to top of stack
+	 * @param dataItem which is the data item to be added to the list
 	 */
 	public void push(T dataItem) {
 		DoubleLinkedNode<T> newNode = new DoubleLinkedNode<T>(dataItem);
@@ -43,11 +50,12 @@ public class DLStack<T> implements DLStackADT<T> {
 		numItems++;
 	}
 
-	 /**
-	  * Removes and returns the top data item of the stack, returning its item
-	  * @return item, the element stored in the popped node
-	  */
-	
+	/**
+	 * Removes and returns the top data item of the stack, returning its item
+	 * @return item, the element stored in the popped node
+	 * @throws InvalidItemException if the item to be added is invalid
+
+	 */
 	public T pop() throws EmptyStackException{
 		
 		// if the list is empty throw an exception
@@ -74,7 +82,8 @@ public class DLStack<T> implements DLStackADT<T> {
 	
 	 /**
 	  * Removes and returns the kth data item of the stack, returning its item
-	  * @return item, the element stored in the popped node
+	  * @return item, the element stored in the popped 
+	  * @throws InvalidItemException if the item to be added is invalid
 	  */
 	public T pop(int k) throws InvalidItemException{
 		// k = 1 means remove the item from the top of the stack
@@ -120,6 +129,7 @@ public class DLStack<T> implements DLStackADT<T> {
 	/**
 	 * returns the element at the top of the stack without removing it
 	 * @return element at top
+	 * @throws EmptyStackException if the stack is empty
 	 */
 	public T peek() throws EmptyStackException{
 		if(numItems == 0) throw new EmptyStackException("Stack is empty");
@@ -151,6 +161,10 @@ public class DLStack<T> implements DLStackADT<T> {
 		return top;
 	}
 	
+	/**
+	 * toString method that returns a string representation of the stack
+	 * @return data, which is a string that represents the elements of the stack
+	 */
 	public String toString() {
 		String data = "[";
 		String item;
